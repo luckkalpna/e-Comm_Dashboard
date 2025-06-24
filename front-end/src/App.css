@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+/* My custom style */
+
+.navbar{
+  background-color: #008fb7 !important;
+  padding: 10px;
+}
+
+.navbar a{
+  color: #fff !important;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: #008fb7;
+  color: #fff;
+}

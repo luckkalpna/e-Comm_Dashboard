@@ -1,0 +1,54 @@
+import React, {useState} from "react";
+
+export default function SignUp() {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const collectData = ()=>{
+    console.log(name, email, password);
+  }
+
+  return (
+    <div className="container my-4">
+      <h3>Register</h3>
+      <form>
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            id="name"
+            aria-describedby="emailHelp"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button onClick={collectData} type="button" className="btn btn-primary">
+          Sign Up
+        </button>
+      </form>
+    </div>
+  );
+}
