@@ -1,10 +1,12 @@
 import React, {useState} from "react";
+import { useNavigate} from 'react-router-dom'
 
 export default function SignUp() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const Navigate = useNavigate();
   const collectData = async ()=>{
     console.log(name, email, password);
     let result = await fetch("http://localhost:5000/register", {
@@ -15,7 +17,11 @@ export default function SignUp() {
       },
     });
     result = await result.json();
+    localStorage.setItem("user", JSON.stringify(result));
     console.log(result);
+    if(result){
+      Navigate('/');
+    }
   }
 
   return (
