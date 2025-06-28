@@ -35,7 +35,7 @@ export default function Navbar() {
                   Profile
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 {auth ? <Link className="nav-link" onClick={logout} to="/signup">
                   Logout
                 </Link> : <Link className="nav-link" to="/signup">
@@ -46,7 +46,17 @@ export default function Navbar() {
                 <Link className="nav-link" to="/login">
                   Login
                 </Link>
-              </li>
+              </li> */}
+              {auth ? <li><Link className="nav-link" onClick={logout} to="/signup">
+                  Logout
+                </Link></li> : <>
+                <li><Link className="nav-link" to="/signup">
+                  SignUp
+                </Link></li>
+                <li><Link className="nav-link" to="/login">
+                  Login
+                </Link></li>
+                </>}
             </ul>
           </div>
         </div>
