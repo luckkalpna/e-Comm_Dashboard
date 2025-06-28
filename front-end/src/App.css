@@ -66,3 +66,7 @@
   width: 3.5%;
   border-radius: 100%;
 }
+
+.error-msg{
+  color: red;
+}
