@@ -5,8 +5,24 @@ export default function AddProduct() {
   const [price, setPrice] = React.useState('');
   const [category, setCategory] = React.useState('');
   const [company, setCompany] = React.useState('');
+
   const addProduct = async () =>{
     console.log(name, price, category, company);
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    console.log(userId);
+      let result = await fetch("http://localhost:5000/add-product", {
+      method: "POST",
+      body: JSON.stringify({name, price, category, userId, company}),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    result = await result.json();
+    localStorage.setItem("product", JSON.stringify(result));
+    console.log(result);
+    // if(result){
+    //   Navigate('/');
+    // }
   }
   return (
     <>
