@@ -1,7 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const auth = localStorage.getItem("user");
+  const navigate = useNavigate();
+  const logout = () =>{
+    localStorage.removeItem("user");
+    navigate("/signup");
+    console.log("Logout clicked");
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary navbar">
@@ -24,19 +31,16 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/logout">
-                  Logout
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/profile">
                   Profile
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/signup">
+                {auth ? <Link className="nav-link" onClick={logout} to="/signup">
+                  Logout
+                </Link> : <Link className="nav-link" to="/signup">
                   SignUp
-                </Link>
+                </Link>}
               </li>
             </ul>
           </div>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate} from 'react-router-dom'
 
 export default function SignUp() {
@@ -7,6 +7,14 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const Navigate = useNavigate();
+
+  useEffect(() =>{
+    const auth = localStorage.getItem("user");
+    if(auth){
+      Navigate("/");
+    }
+  })
+
   const collectData = async ()=>{
     console.log(name, email, password);
     let result = await fetch("http://localhost:5000/register", {
