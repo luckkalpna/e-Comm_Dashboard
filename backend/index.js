@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 require("./db/config");
 const User = require("./db/User");
-const cors = require("cors");
+const Product = require("./db/Product");
 const app = express();
-app.use(cors());
+
 app.use(express.json());
+app.use(cors());
 
 app.post("/register", async (req, res) => {
   let user = new User(req.body);
@@ -15,7 +17,7 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   if (req.body.password && req.body.email) {
     let user = await User.findOne(req.body).select("-password"); //Exclude password from the response
     if (user) {
@@ -27,5 +29,11 @@ app.post("/login", async (req, res) => {
     res.send({ result: "No User Found" });
   }
 });
+
+app.post("/add-product" , async (req, res) =>{
+  let product = new Product(req.body);
+  let result = await product.save();
+  res.send(result);
+})
 
 app.listen(5000);
