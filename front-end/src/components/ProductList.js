@@ -12,7 +12,17 @@ export default function ProductList() {
     result = await result.json();
     setProducts(result);
   };
-  console.log("products", products); // ✅ Log here
+  // console.log("products", products); // ✅ Log here
+  const deleteProduct = async (id) =>{
+    let result = await fetch (`http://localhost:5000/product/${id}`, {
+      method: "DELETE"
+    });
+    result = await result.json();
+    if(result){
+      getProducts();
+    }
+    // console.log(id)
+  }
 
   return (
     <>
@@ -23,6 +33,7 @@ export default function ProductList() {
           <li>Name</li>
           <li>Price</li>
           <li>Category</li>
+          <li>Operation</li>
         </ul>
         {products.map((item, index) => (
           <ul className="product-item" key={item._id}>
@@ -30,6 +41,7 @@ export default function ProductList() {
             <li>{item.name}</li>
             <li>$ {item.price}</li>
             <li>{item.category}</li>
+            <li><button type="button" className="btn btn-danger btn-sm" onClick={()=>{deleteProduct(item._id)}}>Delete</button></li>
           </ul>
         ))}
       </div>
