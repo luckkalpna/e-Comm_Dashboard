@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -41,7 +42,9 @@ export default function ProductList() {
             <li>{item.name}</li>
             <li>$ {item.price}</li>
             <li>{item.category}</li>
-            <li><button type="button" className="btn btn-danger btn-sm" onClick={()=>{deleteProduct(item._id)}}>Delete</button></li>
+            <li><button type="button" className="btn btn-danger btn-sm" onClick={()=>{deleteProduct(item._id)}}>Delete</button> / 
+            <Link to={"/update/"+item._id}> <button type="button" className="btn btn-info btn-sm">Update</button></Link>
+            </li>
           </ul>
         ))}
       </div>
