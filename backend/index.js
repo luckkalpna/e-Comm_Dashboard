@@ -45,18 +45,26 @@ app.get("/products", async (req, res) => {
   }
 });
 
-app.delete("/product/:id", async (req, res) =>{
-  const result = await Product.deleteOne({_id:req.params.id})
-  res.send(result)
+app.delete("/product/:id", async (req, res) => {
+  const result = await Product.deleteOne({ _id: req.params.id });
+  res.send(result);
 });
 
-app.get("/product/:id", async (req, res) =>{
-  let result = await Product.findOne({_id:req.params.id});
-  if (result){
-    res.send(result)
-  }else{
-    res.send({result: "No Record Found"})
+app.get("/product/:id", async (req, res) => {
+  let result = await Product.findOne({ _id: req.params.id });
+  if (result) {
+    res.send(result);
+  } else {
+    res.send({ result: "No Record Found" });
   }
+});
+
+app.put("/product/:id", async (req, res) => {
+  const result = await Product.updateOne(
+    { _id: req.params.id },
+    { $set: req.body } // Update the product with the new data
+  );
+  res.send(result);
 });
 
 app.listen(5000);
