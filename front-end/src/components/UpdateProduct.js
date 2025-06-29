@@ -34,7 +34,7 @@ const [name, setName] = React.useState("");
     });
     result = await result.json();
     navigate("/");
-    console.log(result);
+    // console.log(result);
     }
   return (
     <>
