@@ -21,7 +21,8 @@ export default function AddProduct() {
       body: JSON.stringify({ name, price, category, userId, company }),
       headers: {
         "Content-Type": "application/json",
-      },
+        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`
+      }
     });
     result = await result.json();
     localStorage.setItem("product", JSON.stringify(result));

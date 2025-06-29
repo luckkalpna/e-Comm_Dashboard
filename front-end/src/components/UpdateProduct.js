@@ -15,7 +15,11 @@ const [name, setName] = React.useState("");
 
   const getProductDetails = async () =>{
     console.log(params);
-    let result = await fetch(`http://localhost:5000/product/${params.id}`);
+    let result = await fetch(`http://localhost:5000/product/${params.id}`, {
+      headers: {
+        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`
+      }
+    });
     result = await result.json();
     setName(result.name);
     setCategory(result.category);
@@ -29,7 +33,8 @@ const [name, setName] = React.useState("");
       method: "PUT",
       body: JSON.stringify({name, price, category, company}),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`
       }
     });
     result = await result.json();
